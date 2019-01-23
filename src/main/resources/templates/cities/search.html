@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Cities</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="../main.css">
+    <script src="../jquery-3.3.1.js"></script>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<div class="forgecontainer">
+
+    <h1 class="main-name_page">City</h1>
+    <div class="float-l">
+        <a th:href="@{'/logout'}">
+            <button class="logoutButton"><span>✗</span></button>
+        </a>
+    </div>
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'country/'}">Countries</a></li>
+                    <li><a th:href="@{'cities/'}">Cities</a></li>
+                    <li><a th:href="@{'sights/'}">Sights</a></li>
+                    <li><a th:href="@{'universities/'}">Universities</a></li>
+                </b>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="float-l mg-t-50 mg-l-15 w-66">
+
+        <h1 class="name_page">Search City</h1>
+
+        <form>
+            <div class="row">
+                <div class="col-25">
+                    <label for="nameCitySearch">Name City:</label>
+                </div>
+                <div class="col-75 w-50">
+                    <input id="nameCitySearch" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="population">Population:</label>
+                </div>
+                <div class="col-75 w-50">
+                    <input id="population" type="number">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="history">History:</label>
+                </div>
+                <div class="col-75 w-50">
+                    <input id="history" type="text">
+                </div>
+            </div>
+        </form>
+
+
+        <div class="clear text-align-center mg-t-8">
+            <button id="searchButtonCity">Search</button>
+            <a th:href="@{'/createNewCityButton'}">
+                <button>Create New</button>
+            </a>
+        </div>
+
+        <div class="border-list mg-t-8">
+            <div class="right-scroll_head">
+                <span class="w-49 mg-l-1 color-yellow">NAME</span>
+                <span class="w-50 mg-l-270 color-yellow">POPULATION</span>
+            </div>
+            <div class="right-scroll">
+                <ul class="ul_table">
+                    <li class="li_table" th:each="city:${cityList}">
+                        <a class="buttons-list" th:href="@{'/viewCity/'+${city.getId()}}">
+                            <div th:name="nameCity">
+                                <p class="w-49 float-l mg-l-1" th:text="${city.nameCity}"
+                                   th:name="nameCityToSearch"></p>
+                                <p class="w-50 float-l" th:text="${city.population}"></p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clear"></div>
+
+</div>
+
+</body>
+</html>
+<script src="main.js"></script>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Sight</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="../main.css">
+    <script src="../jquery-3.3.1.js"></script>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+
+<div class="forgecontainer">
+
+    <h1 class="main-name_page">Sight</h1>
+    <div class="float-l">
+        <a th:href="@{'/logout'}">
+            <button class="logoutButton"><span>✗</span></button>
+        </a>
+    </div>
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
+        </div>
+    </div>
+
+    <div class="float-l mg-t-50 mg-l-15 mg-b-20 w-66">
+
+        <h1 class="name_page">View existing Sight</h1>
+
+        <!--<p>ID: [[${sight.id}]]</p>-->
+
+        <form>
+            <div class="row">
+                <div class="col-25">
+                    <label for="nameSights">Name Sight:</label>
+                </div>
+                <div class="col-75">
+                    <p class="sightViewP" th:text="${sight.getNameSight()}" id="nameSights"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label>Type:</label>
+                </div>
+                <div class="col-75">
+                    <p class="sightViewP" th:text="${sight.getType()}" type="type"></p>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label>Minimum money:</label>
+                </div>
+                <div class="col-75">
+                    <p class="sightViewP" th:text="${sight.getMinMoney()}"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="nameCity">In City:</label>
+                </div>
+                <div class="col-75">
+                    <p class="sightViewP" th:text="${sight.getCity().getNameCity()}" id="nameCity"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label>Description:</label>
+                </div>
+                <div class="col-75">
+                    <p class="sightViewP" th:text="${sight.getDescription()}"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label>Photo:</label>
+                </div>
+                <div class="col-75">
+                    <img class="sightViewP" th:src="@{${'/images/' + sight.getFile() }}" title="photo not found"
+                         style="width: 500px; height: 300px"/>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="text-align-center clear">
+        <a th:href="@{'/editSight/'+${sight.getId()}}">
+            <button>Edit</button>
+        </a>
+
+        <a th:href="@{'/createNewSightButtonView'}">
+            <button>Create New</button>
+        </a>
+    </div>
+    <div class="comment" id="com">
+        <div class="commentsText" id="comText">
+            <input type="hidden" id="username" th:value="${username}">
+            <div th:each="i : ${#numbers.sequence(comments.size() -1,0,-1)}" name="commentDiv">
+                <p th:text="${comments[i]}" id="commentP"></p>
+            </div>
+        </div>
+        <div id="comArea">
+            <textarea class="commentText" rows="5" id="commentText" placeholder="Write something..."></textarea>
+            <button class="commentButton" id="commentButton">Add Comment</button>
+            <button class="commentButtonHide" id="closeComment">☚</button>
+        </div>
+    </div>
+    <div id="mapComment"></div>
+</div>
+</body>
+</html>
+
+<script src="../main.js"></script>
+<script src="../mapsSight.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg7cdLpuG1qIkXTSXInxy11-KudH-G8Bk&callback=initMap"></script>

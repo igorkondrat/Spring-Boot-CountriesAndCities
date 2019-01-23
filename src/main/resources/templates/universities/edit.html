@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit existing University</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="../main.css">
+    <script src="../jquery-3.3.1.js"></script>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<div class="forgecontainer">
+
+    <h1 class="main-name_page">University</h1>
+    <div class="float-l">
+        <a th:href="@{'/logout'}">
+            <button class="logoutButton"><span>✗</span></button>
+        </a>
+    </div>
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
+        </div>
+    </div>
+
+    <div class="float-l mg-t-50 mg-l-15 w-66">
+
+        <h1 class="name_page">Edit existing University</h1>
+
+        <!--<p>ID: [[${university.id}]]</p>-->
+
+        <form id="formSaveUniversity">
+            <input type="hidden" name="id" id="id" th:value="${university.id}">
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="nameUniversity">Name City:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="nameUniversity" id="nameUniversity" th:value="${university.nameUniversity}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="direction">Direction:</label>
+                </div>
+                <div class="col-75">
+                    <div><input type="text" name="direction" id="direction" th:value="${university.direction}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="street">Street:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="street" id="street" th:value="${university.street}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="dateOfCreation">Date of Creation:</label>
+                </div>
+                <div class="col-75">
+                    <input name="dateOfCreation" id="dateOfCreation" type="date"
+                           th:value="${university.dateOfCreation}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="ownership">Ownership:</label>
+                </div>
+                <div class="col-75">
+                    <select name="ownership" id="ownership" th:value="${university.ownership}">
+                        <option name="continent">Private</option>
+                        <option name="continent">State</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="formOfTraining">Form of Training:</label>
+                </div>
+                <div class="col-75">
+                    <select name="formOfTraining" id="formOfTraining"
+                            th:value="${university.formOfTraining}">
+                        <option name="continent">Full time</option>
+                        <option name="continent">Part time</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="nameCity">In City:</label>
+                </div>
+                <div class="col-75">
+                    <select name="nameCity" id="nameCity">
+                        <div th:each="city:${cityList}">
+                            <option th:text="${city.getNameCity()}"></option>
+                        </div>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="clear text-align-center">
+        <button id="updateButtonUniversity">Save</button>
+
+        <a th:href="@{'/deleteUniversity/'+${university.getId()}}">
+            <button>Delete</button>
+        </a>
+
+        <a th:href="@{'/cancelUniversityEdit/'+${university.getId()}}">
+            <button>Back</button>
+        </a>
+    </div>
+</div>
+</body>
+</html>
+
+<script src="../main.js"></script>

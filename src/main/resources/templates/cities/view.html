@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View City</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="../main.css">
+    <script src="../jquery-3.3.1.js"></script>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+
+<div class="forgecontainer">
+
+    <h1 class="main-name_page">City</h1>
+    <div class="float-l">
+        <a th:href="@{'/logout'}">
+            <button class="logoutButton"><span>✗</span></button>
+        </a>
+    </div>
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
+        </div>
+    </div>
+
+    <div class="float-l mg-t-50 mg-l-15">
+
+        <h1 class="name_page">View existing City</h1>
+
+        <!--<p>ID: [[${city.id}]]</p>-->
+
+        <form class="formflex">
+            <div class="disp-flex w-30">
+                <p>Name Of City:</p>
+                <p>Population:</p>
+                <p>Date Of Creation:</p>
+                <p>Country:</p>
+                <p>History:</p>
+            </div>
+            <div class="disp-flex w-70">
+                <p th:text="${city.getNameCity()}" id="nameCity"></p>
+                <p th:text="${city.getPopulation()}"></p>
+                <p th:text="${city.getDateOfCreation()}"></p>
+                <p th:text="${city.getCountry().getNameCountry()}"></p>
+                <p th:text="${city.getHistory()}"></p>
+            </div>
+        </form>
+
+        <div class="border-list mg-4">
+            <div class="right-scroll_head">
+                <span class="w-49 mg-l-1 color-yellow">NAME SIGHT</span>
+                <span class="w-50 mg-l-226 color-yellow">DATA OF CREATION</span>
+            </div>
+            <div class="right-scroll-view">
+                <ul class="ul_table">
+                    <li class="li_table" th:each="sight:${sightList}">
+                        <div th:if="${city.equals(sight.getCity())}">
+                            <a class="buttons-list" th:href="@{'/viewSight/'+${sight.getId()}}">
+                                <p class="w-49 float-l mg-l-1" th:text="${sight.nameSight}" name="nameSight"></p>
+                                <p class="w-50 float-l" th:text="${sight.type}"></p>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-list mg-4">
+            <div class="right-scroll_head">
+                <span class="w-49 mg-l-1 color-yellow">NAME UNIVERSITY</span>
+                <span class="w-50 mg-l-179 color-yellow">DIRECTION</span>
+            </div>
+            <div class="right-scroll-view">
+                <ul class="ul_table">
+                    <li class="li_table" th:each="university:${universityList}">
+                        <div th:if="${city.equals(university.getCity())}">
+                            <a class="buttons-list" th:href="@{'/viewUniversity/'+${university.getId()}}">
+                                <p class="w-49 float-l mg-l-1" th:text="${university.nameUniversity}" th:name="nameUniversity"></p>
+                                <p class="w-50 float-l" th:text="${university.direction}"></p>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-align-center clear">
+        <a th:href="@{'/editCity/'+${city.getId()}}">
+            <button>Edit</button>
+        </a>
+
+        <a th:href="@{'/createNewCityButtonView'}">
+            <button>Create New</button>
+        </a>
+    </div>
+    <div id="map"></div>
+</div>
+
+</body>
+</html>
+<script src="../main.js"></script>
+<script src="../mapsCity.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg7cdLpuG1qIkXTSXInxy11-KudH-G8Bk&callback=initMap"></script>

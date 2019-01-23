@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Sight</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="../main.css">
+    <script src="../jquery-3.3.1.js"></script>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+
+<div class="forgecontainer">
+
+    <h1 class="main-name_page">Sight</h1>
+    <div class="float-l">
+        <a th:href="@{'/logout'}">
+            <button class="logoutButton"><span>✗</span></button>
+        </a>
+    </div>
+
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'country/'}">Countries</a></li>
+                    <li><a th:href="@{'cities/'}">Cities</a></li>
+                    <li><a th:href="@{'sights/'}">Sights</a></li>
+                    <li><a th:href="@{'universities/'}">Universities</a></li>
+                </b>
+            </ul>
+        </div>
+    </div>
+
+    <div class="float-l mg-t-50 mg-l-15 w-66">
+
+        <h1 class="name_page">Search sight</h1>
+
+        <form>
+            <div class="row">
+                <div class="col-25">
+                    <label for="nameSightSearch">Name Sight:</label>
+                </div>
+                <div class="col-75 w-50">
+                    <input id="nameSightSearch" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="type">Type:</label>
+                </div>
+                <div class="col-75 w-50">
+                    <select id="type" name="type">
+                        <option selected hidden></option>
+                        <option name="type" value="Cafe">Cafe</option>
+                        <option name="type" value="Restaurant">Restaurant</option>
+                        <option name="type" value="Museum">Museum</option>
+                        <option name="type" value="Church">Church</option>
+                        <option name="type" value="Theater">Theater</option>
+                        <option name="type" value="Cinema">Cinema</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="minMoney">Minimum money:</label>
+                </div>
+                <div class="col-75 w-50">
+                    <input id="minMoney" name="minMoney" type="number">
+                </div>
+            </div>
+        </form>
+
+        <div class="clear text-align-center mg-t-8">
+            <button class="two-buttons" id="searchButtonSights">Search</button>
+            <a th:href="@{'/createNewSightButton'}">
+                <button class="two-buttons">Create New</button>
+            </a>
+        </div>
+
+        <div class="border-list mg-t-8">
+            <div class="right-scroll_head">
+                <span class="w-49 mg-l-1 color-yellow">NAME</span>
+                <span class="w-50 mg-l-270 color-yellow">TYPE</span>
+            </div>
+            <div class="right-scroll">
+                <ul class="ul_table">
+                    <li class="li_table" th:each="sight:${sightList}">
+                        <a class="buttons-list" th:href="@{'/viewSight/'+${sight.getId()}}">
+                            <div name="nameSight">
+                                <p class="w-49 float-l mg-l-1" th:text="${sight.nameSight}"
+                                   th:name="nameSightToSearch"></p>
+                                <p class="w-50 float-l" th:text="${sight.type}"></p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+</div>
+</body>
+</html>
+<script src="main.js"></script>

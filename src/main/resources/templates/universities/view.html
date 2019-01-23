@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View University</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="../main.css">
+    <script src="../jquery-3.3.1.js"></script>
+    <script src="../main.js"></script>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<div class="forgecontainer">
+
+    <h1 class="main-name_page">University</h1>
+    <div class="float-l">
+        <a th:href="@{'/logout'}">
+            <button class="logoutButton"><span>✗</span></button>
+        </a>
+    </div>
+
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
+        </div>
+    </div>
+
+    <div class="float-l mg-t-50 mg-l-15">
+
+        <h1 class="name_page">View existing University</h1>
+
+        <!--<p>ID: [[${university.id}]]</p>-->
+
+        <form class="formflex">
+            <div class="disp-flex w-30">
+                <p>Name Of University:</p>
+                <p>Direction:</p>
+                <p>Street:</p>
+                <p>Date Of Creation:</p>
+                <p>Ownership:</p>
+                <p>Form Of Training:</p>
+                <p>Name Of City:</p>
+            </div>
+            <div class="disp-flex w-70">
+                <p th:text="${university.getNameUniversity()}" id="nameUniversity"></p>
+                <p th:text="${university.getDirection()}"></p>
+                <p th:text="${university.getStreet()}"></p>
+                <p th:text="${university.getDateOfCreation()}"></p>
+                <p th:text="${university.getOwnership()}"></p>
+                <p th:text="${university.getFormOfTraining()}"></p>
+                <p th:text="${university.getCity().getNameCity()}" id="nameCity"></p>
+            </div>
+        </form>
+    </div>
+
+    <div class="text-align-center clear">
+
+        <a th:href="@{'/editUniversity/'+${university.getId()}}">
+            <button>Edit</button>
+        </a>
+
+        <a th:href="@{'/createNewUniversityButtonView'}">
+            <button>Create New</button>
+        </a>
+    </div>
+    <div class="comment"></div>
+    <div id="map"></div>
+</div>
+</body>
+</html>
+<script src="../mapsUniversity.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg7cdLpuG1qIkXTSXInxy11-KudH-G8Bk&callback=initMap"></script>

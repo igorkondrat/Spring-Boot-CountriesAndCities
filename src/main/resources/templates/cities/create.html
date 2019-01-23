@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add City</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="../main.css">
+    <script src="jquery-3.3.1.js"></script>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<div class="forgecontainer">
+
+    <h1 class="main-name_page">City</h1>
+    <div class="float-l">
+        <a th:href="@{'/logout'}">
+            <button class="logoutButton"><span>✗</span></button>
+        </a>
+    </div>
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
+        </div>
+    </div>
+
+    <div class="float-l mg-t-50 mg-l-15 mg-b-20 w-60">
+
+        <h1 class="name_page">
+            Creating NEW City
+        </h1>
+
+        <form id="formSaveCity">
+            <div class="row">
+                <div class="col-25">
+                    <label for="nameCity">Name City:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="nameCity" id="nameCity" placeholder="Enter name city...">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="population">Population:</label>
+                </div>
+                <div class="col-75">
+                    <input type="number" name="population" id="population">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="dateOfCreation">Date of Creation:</label>
+                </div>
+                <div class="col-75">
+                    <div><input type="date" name="dateOfCreation" id="dateOfCreation">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="nameCountry">In Country:</label>
+                </div>
+                <div class="col-75">
+                    <select name="nameCountry" id="nameCountry">
+                        <option selected hidden></option>
+                        <div th:each="country:${countryList}">
+                            <option th:text="${country.getNameCountry()}"/>
+                        </div>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="history">History:</label>
+                </div>
+                <div class="col-75">
+                    <textarea rows="6" id="history" name="history" placeholder="Write history.."></textarea>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="clear text-align-center">
+        <button id="saveButtonCity">Save</button>
+
+        <a th:href="@{'/viewAllCities'}">
+            <button>View all Cities</button>
+        </a>
+    </div>
+
+</div>
+</body>
+</html>
+
+<script src="main.js"></script>

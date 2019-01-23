@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Country</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="../main.css">
+    <script src="jquery-3.3.1.js"></script>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<div class="forgecontainer">
+
+    <h1 class="main-name_page">Country</h1>
+    <div class="float-l">
+        <a th:href="@{'/logout'}">
+            <button class="logoutButton"><span>✗</span></button>
+        </a>
+    </div>
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
+        </div>
+    </div>
+
+    <div class="float-l mg-t-50 mg-l-15 mg-b-20 w-60">
+
+        <h1 class="name_page">Creating NEW Country</h1>
+
+        <form id="formSaveCountry">
+            <div class="row">
+                <div class="col-25">
+                    <label for="nameCountry">Name Country:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="nameCountry" id="nameCountry" placeholder="Enter name county...">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="dateOf">Date of Creation:</label>
+                </div>
+                <div class="col-75">
+                    <input type="date" name="dateOfCreation" id="dateOf" placeholder="1991-10-01">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="politicalSystem">Political System:</label>
+                </div>
+                <div class="col-75">
+                    <select name="politicalSystem" id="politicalSystem">
+                        <option selected hidden></option>
+                        <option value="Totalitar">Totalitar</option>
+                        <option value="Authoritarian">Authoritarian</option>
+                        <option value="Democratic">Democratic</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="continent">Continent:</label>
+                </div>
+                <div class="col-75">
+                    <select name="continent" id="continent">
+                        <option selected hidden></option>
+                        <option value="Antarctica">Antarctica</option>
+                        <option value="NorthAmerica">North America</option>
+                        <option value="SouthAmerica">South America</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Australasia">Australasia</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="capital">Capital:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="capital" id="capital">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="square">Square:</label>
+                </div>
+                <div class="col-75">
+                    <input type="number" name="square" id="square">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="population">Population:</label>
+                </div>
+                <div class="col-75">
+                    <input type="number" name="population" id="population">
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+
+    <div class="clear text-align-center">
+        <button id="saveButtonCountry">Save</button>
+        <a th:href="@{'/viewAllCountries'}">
+            <button>View all Countries</button>
+        </a>
+    </div>
+
+</div>
+</body>
+</html>
+
+<script src="main.js"></script>
+

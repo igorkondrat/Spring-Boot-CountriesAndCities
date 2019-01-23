@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Sight</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="../main.css">
+    <script src="jquery-3.3.1.js"></script>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+
+<div class="forgecontainer">
+
+    <h1 class="main-name_page">Sight</h1>
+    <div class="float-l">
+        <a th:href="@{'/logout'}">
+            <button class="logoutButton"><span>✗</span></button>
+        </a>
+    </div>
+
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
+        </div>
+    </div>
+
+    <div class="float-l mg-t-50 mg-l-15 mg-b-20 w-60">
+
+        <h1 class="name_page">Creating NEW Sight</h1>
+
+        <form id="formSaveSight">
+            <div class="row">
+                <div class="col-25">
+                    <label for="nameSight">Name Sight:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="nameSight" placeholder="Enter name sight...">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="type">Type:</label>
+                </div>
+                <div class="col-75">
+                    <select id="type" name="type">
+                        <option selected hidden></option>
+                        <option name="type" value="Cafe">Cafe</option>
+                        <option name="type" value="Restaurant">Restaurant</option>
+                        <option name="type" value="Museum">Museum</option>
+                        <option name="type" value="Church">Church</option>
+                        <option name="type" value="Theater">Theater</option>
+                        <option name="type" value="Cinema">Cinema</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="minMoney">Minimum money:</label>
+                </div>
+                <div class="col-75">
+                    <input type="number" id="minMoney" placeholder="in UAH">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="nameCity">In City:</label>
+                </div>
+                <div class="col-75">
+                    <select id="nameCity">
+                        <div th:each="city:${cityList}">
+                            <option selected hidden></option>
+                            <option th:text="${city.getNameCity()}"></option>
+                        </div>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="description">Description:</label>
+                </div>
+                <div class="col-75">
+                    <textarea rows="6" id="description" placeholder="Write something.."></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label>Photo:</label>
+                </div>
+                <div class="col-75 padding-top-6">
+                        <input type="file" id="file" name="file">
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="clear text-align-center">
+        <button id="saveButtonSight">Save</button>
+        <a th:href="@{'/viewAllSight'}">
+            <button>View all Sight</button>
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+<script src="main.js"></script>
