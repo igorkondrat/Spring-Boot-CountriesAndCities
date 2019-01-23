@@ -1,0 +1,2 @@
+INSERT INTO main_project.university (id, date_of_creation, direction, form_of_training, name_university, ownership, street, city_id) VALUES (5, '1943-03-12', 'Finance and Credit', 'Full time', 'University of Banking', 'Private', 'Vyacheslav Chornovil', 252);
+INSERT INTO main_project.university (id, date_of_creation, direction, form_of_training, name_university, ownership, street, city_id) VALUES (6, '1845-12-12', 'System engineer', 'Full time', 'NU LP', 'State', 'Bandera', 252);

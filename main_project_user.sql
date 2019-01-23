@@ -1,0 +1,2 @@
+INSERT INTO main_project.user (id, account_non_expired, account_non_locked, credentials_non_expired, email, enabled, password, role, username) VALUES (1, true, true, true, 'admin@gmail.com', true, '$2a$10$3RSErrZck/wp4MQPG/kOqeIk8UosSd8VOjP8fcJ3C19t/4j/Jm1AO', 'ROLE_ADMIN', 'admin');
+INSERT INTO main_project.user (id, account_non_expired, account_non_locked, credentials_non_expired, email, enabled, password, role, username) VALUES (2, true, true, true, 'user@gmail.com', true, '$2a$10$GsbDtJdTeXoUfMBu0UmeFOTSlHHHIYm2aYV9tooGZHbjsurjhJZZq', 'ROLE_USER', 'user');
